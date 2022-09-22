@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!--Data item that holds the reminder details-->
+        <variable
+            name="reminderDataItem"
+            type="com.udacity.project4.locationreminders.reminderslist.ReminderDataItem" />
+    </data>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+        tools:context=".locationreminders.ReminderDescriptionActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_15sdp"
+            android:textColor="#111"
+            android:textStyle="bold"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/welcome_in_select_screen_please_enter_your_location"
+            android:textAlignment="center"
+            android:textSize="@dimen/_24ssp" />
+
+        <TextView
+            android:id="@+id/location_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:hint="@string/title"
+            android:padding="@dimen/_10sdp"
+            android:text="@{reminderDataItem.title}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/location_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:hint="@string/description"
+            android:padding="@dimen/_10sdp"
+            android:text="@{reminderDataItem.description}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/select_reminder_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginTop="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:drawableStart="@drawable/ic_location"
+            android:drawableLeft="@drawable/ic_location"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:hint="@string/reminder_location"
+            android:padding="@dimen/_10sdp"
+            android:text="@{reminderDataItem.location}"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:drawableLeftCompat="@drawable/ic_location"
+            app:drawableStartCompat="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reminderDescription"
+            tools:ignore="UseCompatTextViewDrawableXml" />
+
+    </LinearLayout>
+</layout>
