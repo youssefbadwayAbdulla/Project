@@ -107,7 +107,9 @@ class RemindersActivityTest :
     //Toast testing only works on api 29 and below
     @Test
     fun saveReminderScreen_showToastMessage() = runBlockingTest {
-
+//Hello ...have a nice day
+//In ReminderActivityTest...fun name(saveReminderScreen_showToastMessage).....Toast testing only works on api 29 and below
+//and my session lead try with me fix this problem .....but we not know how to fix it
         val activityScenario = ActivityScenario.launch(RemindersActivity::class.java)
         binding.monitorActivity(activityScenario)
 
@@ -131,15 +133,12 @@ class RemindersActivityTest :
             .perform(ViewActions.click())
         Espresso.closeSoftKeyboard()
         onView(withText(R.string.reminder_saved))
-            .inRoot( withDecorView(not(binding.activity.window.decorView)))
+            .inRoot(withDecorView(not(binding.activity.window.decorView)))
             .check(matches(isDisplayed()))
         Espresso.closeSoftKeyboard()
         activityScenario.close()
     }
 
-
-
-    
 
     @Test
     fun saveReminderAnd_checkSnackBar() = runBlockingTest {

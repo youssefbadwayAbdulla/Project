@@ -582,7 +582,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663812679725</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="new add commit  modify22">
+      <created>1663817182447</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1663817182447</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -613,6 +620,7 @@
     <MESSAGE value="new add commit  modify17" />
     <MESSAGE value="new add commit  modify18" />
     <MESSAGE value="new add commit  modify19" />
-    <option name="LAST_COMMIT_MESSAGE" value="new add commit  modify19" />
+    <MESSAGE value="new add commit  modify22" />
+    <option name="LAST_COMMIT_MESSAGE" value="new add commit  modify22" />
   </component>
 </project>
