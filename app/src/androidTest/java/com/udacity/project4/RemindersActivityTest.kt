@@ -8,10 +8,8 @@ import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -49,13 +47,9 @@ class RemindersActivityTest :
 
     private lateinit var dataSource: ReminderDataSource
     private lateinit var context: Application
-    private lateinit var activity: RemindersActivity
     private lateinit var saveReminderViewModelTest: SaveReminderViewModel
     private val binding = DataBindingIdlingResource()
 
-    @get:Rule
-    var activityTestRule: ActivityTestRule<RemindersActivity> =
-        ActivityTestRule(RemindersActivity::class.java)
 
     @Before
     fun setup() {
@@ -77,14 +71,13 @@ class RemindersActivityTest :
             single { RemindersLocalRepository(get()) as ReminderDataSource }
             single { LocalDB.createRemindersDao(context) }
         }
-        //declare a new koin module
+//declare a new koin module
         startKoin {
             modules(listOf(myModule))
         }
-        //Get our real repository
-        activity = activityTestRule.activity
+//Get our real repository
         dataSource = get()
-        //clear the data to start fresh
+//clear the data to start fresh
         runBlocking {
             dataSource.deleteAllReminders()
         }
@@ -107,37 +100,34 @@ class RemindersActivityTest :
     //Toast testing only works on api 29 and below
     @Test
     fun saveReminderScreen_showToastMessage() = runBlockingTest {
-//Hello ...have a nice day
-//In ReminderActivityTest...fun name(saveReminderScreen_showToastMessage).....Toast testing only works on api 29 and below
-//and my session lead try with me fix this problem .....but we not know how to fix it
+
         val activityScenario = ActivityScenario.launch(RemindersActivity::class.java)
         binding.monitorActivity(activityScenario)
 
         onView(withId(R.id.addReminderFAB)).perform(click())
-        onView(withId(R.id.reminderTitle)).perform(typeText("Title"))
+        onView(withId(R.id.reminderTitle)).perform(typeText("Title"),closeSoftKeyboard())
         closeSoftKeyboard()
-        onView(withId(R.id.reminderDescription)).perform(typeText("Description"))
-        closeSoftKeyboard()
+        onView(withId(R.id.reminderDescription)).perform(typeText("Description"),closeSoftKeyboard())
+
 
         onView(withId(R.id.select_reminder_location)).perform(click())
         onView(withId(R.id.mapLocation)).perform(click())
 
         onView(withId(R.id.btn_save)).perform(click())
 
-//        onView(withId(R.id.saveReminder)).perform(click())
-//        onView(withText(R.string.reminder_saved))
-//            .inRoot(RootMatchers.withDecorView(not(activity.window.decorView))).check(
-//                matches(isDisplayed())
-//            )
-        Espresso.onView(withId(R.id.saveReminder))
-            .perform(ViewActions.click())
-        Espresso.closeSoftKeyboard()
-        onView(withText(R.string.reminder_saved))
-            .inRoot(withDecorView(not(binding.activity.window.decorView)))
-            .check(matches(isDisplayed()))
-        Espresso.closeSoftKeyboard()
+        onView(withId(R.id.saveReminder)).perform(click())
+        onView(withText(R.string.reminder_saved)).inRoot(
+            withDecorView(
+                not(
+                    getActivity(
+                        activityScenario
+                    )!!.window.decorView
+                )
+            )
+        ).check(matches(isDisplayed()))
         activityScenario.close()
     }
+
 
 
     @Test
@@ -154,9 +144,10 @@ class RemindersActivityTest :
         onView(
             allOf(
                 withId(com.google.android.material.R.id.snackbar_text),
-                withText(activity.getString(R.string.err_select_location))
+                withText(R.string.err_select_location)
             )
         ).check(matches(isDisplayed()))
+        activityScenario.close()
     }
 
 
@@ -169,5 +160,3 @@ class RemindersActivityTest :
     }
 
 }
-
-

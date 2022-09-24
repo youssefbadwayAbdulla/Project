@@ -39,9 +39,9 @@
 
         <activity android:name=".locationreminders.ReminderDescriptionActivity"
             tools:ignore="DuplicateActivity" />
-        <activity android:name=".locationreminders.RemindersActivity" />
+        <activity android:name=".authentication.AuthenticationActivity" />
 
-        <activity android:name=".authentication.AuthenticationActivity"
+        <activity android:name=".locationreminders.RemindersActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
